@@ -1,0 +1,9 @@
+{
+  "name": "Secure Attendance",
+  "short_name": "Attendance",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080b12",
+  "theme_color": "#111827",
+  "description": "Secure biometric time and attendance app"
+}
