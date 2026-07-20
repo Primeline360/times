@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b1220">
+<title>Northern Staff Attendance</title>
+<link rel="stylesheet" href="nsa-cloud.css">
+</head>
+<body>
+<div class="app">
+<header class="brand"><div class="logo">✓</div><div><h1 id="brandTitle">Northern Staff Attendance</h1><div class="muted small"><span id="connectionStatus">Preparing system…</span></div></div></header>
+
+<section id="firstSetup" class="card hidden">
+<h2>Create the online attendance system</h2>
+<p class="muted">Do this once from your phone or computer in Windhoek. The system will create its shared online storage and give you a private link for the staff phone in the north.</p>
+<div class="field"><label>Organisation / department</label><input id="setupOrg" value="Northern Staff Attendance" maxlength="70"></div>
+<div class="field"><label>Manager name</label><input id="setupManager" placeholder="Your full name" maxlength="70"></div>
+<div class="field"><label>Create 6-digit manager PIN</label><input id="setupPin" class="pin" type="password" inputmode="numeric" maxlength="6"></div>
+<div class="field"><label>Confirm manager PIN</label><input id="setupPin2" class="pin" type="password" inputmode="numeric" maxlength="6"></div>
+<div id="setupMsg"></div>
+<button class="btn primary block" onclick="createCloudSystem()">Create Online System</button>
+</section>
+
+<section id="pairScreen" class="card hidden">
+<h2>Connect the northern staff phone</h2>
+<p class="muted">Copy this private link and send it to the person responsible for the shared phone in the north. They open it once and choose <b>Connect Staff Phone</b>.</p>
+<div id="kioskPairLink" class="linkbox"></div>
+<button class="btn primary block" onclick="copyPairLink()">Copy Staff-Phone Link</button>
+<button class="btn success block" onclick="sharePairLink()">Share Link</button>
+<button class="btn ghost block" onclick="openManagerLogin()">Continue to Manager Dashboard</button>
+</section>
+
+<section id="pairConfirm" class="card hidden">
+<h2>Connect this staff phone</h2>
+<p class="muted">This will connect the phone to the online attendance records managed from Windhoek.</p>
+<div id="pairOrg" class="badge"></div>
+<button class="btn success block" onclick="confirmPairing()">Connect Staff Phone</button>
+<button class="btn ghost block" onclick="cancelPairing()">Cancel</button>
+</section>
+
+<section id="managerLogin" class="card hidden">
+<h2>Manager access</h2><p class="muted" id="managerLoginOrg"></p>
+<div class="field"><label>Manager PIN</label><input id="managerPin" class="pin" type="password" inputmode="numeric" maxlength="6"></div>
+<div id="managerLoginMsg"></div>
+<button class="btn primary block" onclick="managerLogin()">Open Dashboard</button>
+<button class="btn ghost block" onclick="showPairScreen()">Pair Staff Phone</button>
+</section>
+
+<main id="kioskApp" class="hidden">
+<section id="kioskClock">
+<div class="card">
+<div class="clock" id="clock">--:--</div><div class="date" id="date"></div>
+<div class="field"><label>Select your name</label><input id="searchEmployee" placeholder="Search by name or employee number" oninput="renderKioskEmployees()"></div>
+<div class="section-head"><span id="employeeCount" class="muted small"></span><span id="clockedInCount" class="badge"></span></div>
+<div id="employeeGrid" class="employee-grid"></div>
+<div id="noEmployees" class="empty hidden">No active employees found. Contact the manager.</div>
+</div>
+<div id="queueNotice" class="notice warn hidden"></div>
+</section>
+<section id="kioskToday" class="hidden"><div class="card"><div class="section-head"><h2 style="margin:0">Today’s activity</h2><span id="todayBadge" class="badge"></span></div><div id="todayRows"></div></div></section>
+<nav class="tabs"><button id="kioskClockTab" class="active" onclick="showKioskTab('clock')">Clock</button><button id="kioskTodayTab" onclick="showKioskTab('today')">Today</button></nav>
+</main>
+
+<main id="managerApp" class="hidden">
+<section id="managerOverview">
+<div class="card"><div class="topline"><div><h2 style="margin:0" id="managerOrgTitle"></h2><div class="muted small" id="managerNameText"></div></div><button class="btn ghost mini" onclick="managerLogout()">Lock</button></div></div>
+<div class="card stats"><div class="stat"><span>Active employees</span><b id="statEmployees">0</b></div><div class="stat"><span>Currently working</span><b id="statIn">0</b></div><div class="stat"><span>On break</span><b id="statBreak">0</b></div><div class="stat"><span>Pending offline</span><b id="statPending">0</b></div></div>
+<div class="card"><h3>Current staff status</h3><div id="statusRows"></div></div>
+</section>
+<section id="managerEmployees" class="hidden">
+<div class="card"><div class="section-head"><div><h2 style="margin:0">Employee Register</h2><div class="muted small">Maximum 30 active employees</div></div><span id="managerEmployeeCount" class="badge"></span></div>
+<div class="field"><label>Full name</label><input id="newEmpName" maxlength="70"></div>
+<div class="field"><label>Employee number</label><input id="newEmpCode" maxlength="20"></div>
+<div class="field"><label>Six-digit employee PIN</label><input id="newEmpPin" class="pin" type="password" inputmode="numeric" maxlength="6"></div>
+<div id="employeeAdminMsg"></div><button class="btn primary block" onclick="addEmployee()">Add Employee</button><div style="height:14px"></div><div id="employeeAdminRows"></div></div>
+</section>
+<section id="managerRecords" class="hidden">
+<div class="card"><h2>Attendance Records</h2><div class="field"><label>Month</label><input id="recordMonth" type="month" onchange="loadManagerRecords()"></div><div class="field"><label>Employee</label><select id="recordEmployee" onchange="renderManagerRecords()"></select></div>
+<div class="stats"><div class="stat"><span>Total hours</span><b id="recordHours">0h 00m</b></div><div class="stat"><span>Punches</span><b id="recordCount">0</b></div></div><div style="height:12px"></div><div id="recordRows"></div><button class="btn warning block" onclick="addCorrection()">Add Missed Punch</button><button class="btn ghost block" onclick="exportCsv()">Export CSV</button></div>
+</section>
+<section id="managerPair" class="hidden"><div class="card"><h2>Staff phone connection</h2><p class="muted">Use this private link to connect or reconnect the shared phone in the north.</p><div id="managerPairLink" class="linkbox"></div><button class="btn primary block" onclick="copyManagerPairLink()">Copy Link</button><button class="btn success block" onclick="shareManagerPairLink()">Share Link</button><button class="btn ghost block" onclick="refreshManagerData()">Refresh Online Data</button></div></section>
+<nav class="tabs"><button id="mOverviewTab" class="active" onclick="showManagerTab('overview')">Overview</button><button id="mEmployeesTab" onclick="showManagerTab('employees')">Employees</button><button id="mRecordsTab" onclick="showManagerTab('records')">Records</button><button id="mPairTab" onclick="showManagerTab('pair')">Connect</button></nav>
+</main>
+</div>
+
+<div id="punchModal" class="modal hidden"><div class="modal-card"><div style="text-align:center"><div id="punchAvatar" class="avatar"></div><h2 id="punchName"></h2><div id="punchCode" class="muted"></div></div><div class="field"><label>Enter your six-digit PIN</label><input id="punchPin" class="pin" type="password" inputmode="numeric" maxlength="6"></div><div id="punchMsg"></div><div id="punchActions" class="action-grid"></div><button class="btn ghost block" onclick="closePunchModal()">Cancel</button></div></div>
+
+<script src="nsa-cloud.js"></script>
+</body>
+</html>
