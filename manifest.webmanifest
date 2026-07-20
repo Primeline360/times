@@ -5,5 +5,8 @@
   "display": "standalone",
   "background_color": "#080b12",
   "theme_color": "#111827",
-  "description": "Secure biometric time and attendance app"
+  "description": "Secure biometric time and attendance app",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
 }
