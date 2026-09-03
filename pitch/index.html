@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10150f" />
+  <meta name="description" content="A Namibian circular-fashion concept transforming discarded materials into wearable design, livelihoods and measurable community impact." />
+  <title>Sustainable Fashion Namibia | Pitch</title>
+  <style>
+    :root{
+      --ink:#121510;
+      --cream:#f5f0e7;
+      --paper:#fbf8f1;
+      --moss:#5f7451;
+      --sage:#d9e0cf;
+      --sand:#d9bea0;
+      --rust:#a35c42;
+      --muted:#6f736a;
+      --line:rgba(18,21,16,.14);
+      --shadow:0 24px 70px rgba(24,29,20,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1180px,92vw);margin:auto}
+    .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:800;color:var(--moss)}
+    .nav{position:fixed;inset:0 0 auto;z-index:20;background:rgba(251,248,241,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,21,16,.08)}
+    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:900;letter-spacing:.05em;font-size:.88rem;text-transform:uppercase}
+    .brand span{display:inline-block;width:10px;height:10px;background:var(--rust);border-radius:50%;margin-right:8px}
+    .nav-links{display:flex;gap:25px;font-size:.88rem;font-weight:650;color:#353a32}
+    .nav-cta{padding:11px 17px;background:var(--ink);color:white;border-radius:999px;font-size:.82rem;font-weight:800}
+    .hero{min-height:100vh;padding:140px 0 72px;display:grid;align-items:center;overflow:hidden;position:relative}
+    .hero:before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--sage),rgba(217,224,207,0));right:-110px;top:80px;filter:blur(4px)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;position:relative}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.6rem,8vw,7.4rem);line-height:.88;letter-spacing:-.055em;margin:16px 0 28px;max-width:760px;font-weight:500}
+    .hero-copy{font-size:1.16rem;color:#444a40;max-width:620px;margin:0 0 31px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:1px solid var(--ink);padding:14px 20px;border-radius:999px;font-weight:800;font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:10px;background:transparent}
+    .btn.primary{background:var(--ink);color:white}
+    .btn:hover{transform:translateY(-1px)}
+    .hero-visual{position:relative;min-height:580px}
+    .fashion-card{position:absolute;background:#e8e0d6;border:1px solid rgba(18,21,16,.09);box-shadow:var(--shadow);overflow:hidden}
+    .card-main{width:72%;height:82%;right:2%;top:4%;border-radius:180px 180px 26px 26px;background:linear-gradient(160deg,#384536,#9aaa8c 48%,#d6bf9f)}
+    .card-side{width:42%;height:49%;left:0;bottom:2%;border-radius:24px;background:linear-gradient(145deg,#d4b798,#f1e7db)}
+    .fashion-card .label{position:absolute;left:20px;right:20px;bottom:18px;background:rgba(251,248,241,.88);backdrop-filter:blur(8px);padding:13px 14px;border-radius:16px;font-size:.78rem;font-weight:800}
+    .model{position:absolute;inset:14% 20% 8%;border-radius:46% 46% 20% 20%;border:2px solid rgba(255,255,255,.7)}
+    .model:before{content:"";position:absolute;width:24%;aspect-ratio:1;border:2px solid rgba(255,255,255,.75);border-radius:50%;left:38%;top:-15%}
+    .model:after{content:"";position:absolute;left:10%;right:10%;top:28%;height:32%;border-top:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);transform:skewY(-9deg)}
+    .mini-bag{position:absolute;width:46%;height:44%;border:2px solid rgba(18,21,16,.55);border-radius:14px;left:27%;top:26%}
+    .mini-bag:before{content:"";position:absolute;width:48%;height:34%;border:2px solid rgba(18,21,16,.55);border-bottom:0;border-radius:50% 50% 0 0;left:26%;top:-29%}
+    .floating-note{position:absolute;right:0;bottom:0;background:var(--rust);color:white;padding:18px 22px;border-radius:22px;max-width:230px;box-shadow:var(--shadow);font-weight:750;font-size:.9rem}
+    .floating-note strong{display:block;font-family:Georgia,serif;font-size:2rem;font-weight:500;margin-bottom:4px}
+    section{padding:110px 0;border-top:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:end;margin-bottom:52px}
+    h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(2.5rem,5vw,4.8rem);line-height:.96;letter-spacing:-.035em;margin:9px 0 0}
+    .lead{font-size:1.15rem;color:#555b50;max-width:650px;margin:0}
+    .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .panel{padding:30px;border:1px solid var(--line);border-radius:26px;background:white;min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+    .panel .num{font-family:Georgia,serif;font-size:3.2rem;color:var(--moss)}
+    .panel h3{font-size:1.08rem;margin:30px 0 10px}
+    .panel p{color:var(--muted);margin:0;font-size:.95rem}
+    .dark{background:var(--ink);color:white}
+    .dark .eyebrow{color:#c7d6bc}.dark .lead{color:#c4c9bf}.dark section{border-color:rgba(255,255,255,.12)}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,.16);border-radius:28px;overflow:hidden}
+    .process-step{padding:30px;min-height:260px;border-right:1px solid rgba(255,255,255,.16)}
+    .process-step:last-child{border:0}
+    .process-step .step{font-size:.72rem;letter-spacing:.15em;color:#aab49f;text-transform:uppercase;font-weight:800}
+    .process-step h3{font-family:Georgia,serif;font-size:1.55rem;font-weight:500;margin:60px 0 12px}
+    .process-step p{color:#b9bdb4;font-size:.9rem;margin:0}
+    .collection-note{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:26px;padding:16px 18px;background:var(--sage);border-radius:18px;font-size:.88rem}
+    .collection-note strong{font-weight:850}
+    .collection-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .product{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;min-height:340px;display:flex;flex-direction:column}
+    .product-art{height:245px;position:relative;display:grid;place-items:center;background:linear-gradient(150deg,#ede7df,#dcd3c8)}
+    .product:nth-child(2n) .product-art{background:linear-gradient(150deg,#dce5d6,#b8c6aa)}
+    .product:nth-child(3n) .product-art{background:linear-gradient(150deg,#ead6c5,#d4b28f)}
+    .product svg{width:54%;height:54%;stroke:rgba(18,21,16,.68);fill:none;stroke-width:3}
+    .product-info{padding:18px 20px 22px}
+    .product-info strong{display:block;font-size:.98rem}
+    .product-info span{font-size:.79rem;color:var(--muted)}
+    .impact-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+    .impact-main{background:var(--moss);color:white;border-radius:30px;padding:42px;min-height:450px;display:flex;flex-direction:column;justify-content:space-between}
+    .impact-main .big{font-family:Georgia,serif;font-size:clamp(5rem,10vw,9rem);line-height:.8;letter-spacing:-.06em}
+    .impact-main p{max-width:540px;color:#e0e6da;font-size:1.06rem}
+    .impact-stack{display:grid;gap:18px}
+    .impact-card{padding:28px;border-radius:26px;background:#ebe3d7;min-height:216px}
+    .impact-card strong{font-family:Georgia,serif;font-weight:500;font-size:3.4rem;display:block;line-height:1}
+    .impact-card p{margin:18px 0 0;color:#62665e}
+    .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .mile{border-top:2px solid var(--ink);padding-top:18px}
+    .mile .year{font-size:.75rem;font-weight:900;color:var(--rust);letter-spacing:.12em}
+    .mile h3{font-family:Georgia,serif;font-size:1.55rem;font-weight:500;margin:10px 0}
+    .mile p{color:var(--muted);font-size:.9rem}
+    .ask{background:#d5b69a;border-radius:34px;padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center}
+    .ask h2{font-size:clamp(3rem,6vw,5.5rem)}
+    .ask-list{display:grid;gap:12px}
+    .ask-item{background:rgba(255,255,255,.55);border:1px solid rgba(18,21,16,.12);border-radius:18px;padding:16px 18px;font-weight:700}
+    .pitchbar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:30;background:rgba(18,21,16,.92);color:white;border-radius:999px;padding:8px 9px 8px 18px;display:flex;gap:14px;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.2);font-size:.78rem}
+    .pitchbar button{border:0;background:white;color:var(--ink);font-weight:900;border-radius:999px;padding:10px 14px;cursor:pointer}
+    footer{padding:50px 0 110px;border-top:1px solid var(--line)}
+    .footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:flex-end}
+    .footer-title{font-family:Georgia,serif;font-size:2rem}
+    .small{font-size:.78rem;color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:900px){
+      .nav-links{display:none}.hero-grid,.section-head,.impact-grid,.ask{grid-template-columns:1fr}.hero{padding-top:120px}.hero-visual{min-height:520px}.problem-grid{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.process-step:nth-child(2){border-right:0}.process-step:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.16)}.collection-grid{grid-template-columns:1fr 1fr}.roadmap{grid-template-columns:1fr 1fr}.section-head{gap:20px}.ask{padding:34px}.floating-note{right:3%}
+    }
+    @media(max-width:560px){
+      .hero-actions{display:grid}.btn{justify-content:center}.hero-visual{min-height:430px}.card-main{width:82%;height:74%}.card-side{width:52%;height:43%}.process,.collection-grid,.roadmap{grid-template-columns:1fr}.process-step{border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}.process-step:last-child{border-bottom:0}.impact-main{min-height:390px;padding:30px}.collection-note{align-items:flex-start;flex-direction:column}.pitchbar{width:calc(100vw - 28px);justify-content:space-between}.footer-grid{display:grid}.ask{padding:28px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand"><span></span>Sustainable Fashion Namibia</div>
+      <div class="nav-links">
+        <a href="#idea">The Idea</a><a href="#collection">Collection</a><a href="#impact">Impact</a><a href="#roadmap">Roadmap</a>
+      </div>
+      <a class="nav-cta" href="#partner">Partner with us</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Circular design • Namibia • Pitch concept</div>
+          <h1>Waste,<br>reimagined.</h1>
+          <p class="hero-copy">A Namibian fashion concept transforming discarded and overlooked materials into expressive accessories, wearable pieces, fair-work opportunities and measurable local impact.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#idea">Start the pitch →</a>
+            <a class="btn" href="#collection">See the collection</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Prototype fashion visual placeholders">
+          <div class="fashion-card card-main"><div class="model"></div><div class="label">RUNWAY CONCEPT • real photography coming next</div></div>
+          <div class="fashion-card card-side"><div class="mini-bag"></div><div class="label">UPCYCLED ACCESSORY</div></div>
+          <div class="floating-note"><strong>10,000 kg</strong>material diversion target by end of 2027</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="idea">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">01 • The opportunity</div><h2>Fashion can carry more than style.</h2></div>
+          <p class="lead">We see discarded materials as a design resource. The concept connects circular fashion, local creativity and social value in one story that customers, partners and investors can understand.</p>
+        </div>
+        <div class="problem-grid">
+          <div class="panel reveal"><div class="num">01</div><div><h3>Recover value</h3><p>Redirect useful materials from waste streams and give them a second life through design.</p></div></div>
+          <div class="panel reveal"><div class="num">02</div><div><h3>Create desirable products</h3><p>Turn recovered material into fashion pieces people want to wear, gift and talk about.</p></div></div>
+          <div class="panel reveal"><div class="num">03</div><div><h3>Build local impact</h3><p>Use growth to open fair-work opportunities and support practical community initiatives in Namibia.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="dark">
+      <section>
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div><div class="eyebrow">02 • How it works</div><h2>From discarded material to statement piece.</h2></div>
+            <p class="lead">A simple circular model: source responsibly, redesign creatively, make with care and reinvest part of the value into people and community.</p>
+          </div>
+          <div class="process reveal">
+            <div class="process-step"><div class="step">Step 01</div><h3>Source</h3><p>Identify usable discarded, surplus or overlooked material streams.</p></div>
+            <div class="process-step"><div class="step">Step 02</div><h3>Reimagine</h3><p>Develop product concepts that celebrate texture, story and imperfection.</p></div>
+            <div class="process-step"><div class="step">Step 03</div><h3>Create</h3><p>Produce small-batch fashion pieces with an emphasis on quality and uniqueness.</p></div>
+            <div class="process-step"><div class="step">Step 04</div><h3>Reinvest</h3><p>Grow fair-work opportunities and contribute to selected community projects.</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="collection">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">03 • Prototype collection</div><h2>Designed to be seen.</h2></div>
+          <p class="lead">The first collection explores accessories and wearable pieces that can be produced in small runs, photographed editorially and presented through runway-inspired storytelling.</p>
+        </div>
+        <div class="collection-note reveal"><strong>Collection currently in production.</strong><span>These visual slots are ready to be replaced with the actual photographs you take of each finished item.</span></div>
+        <div class="collection-grid">
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><path d="M25 35c8 33 42 33 50 0"/><circle cx="25" cy="33" r="3"/><circle cx="75" cy="33" r="3"/><path d="M42 61l8 13 8-13"/></svg></div><div class="product-info"><strong>Statement Necklace</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><path d="M35 22v18"/><path d="M65 22v18"/><path d="M27 42l8 18 8-18z"/><path d="M57 42l8 18 8-18z"/><circle cx="35" cy="20" r="3"/><circle cx="65" cy="20" r="3"/></svg></div><div class="product-info"><strong>Earrings</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><rect x="25" y="38" width="50" height="40" rx="5"/><path d="M36 38c0-20 28-20 28 0"/><path d="M25 54h50"/></svg></div><div class="product-info"><strong>Handbag</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><rect x="15" y="42" width="70" height="16" rx="6"/><rect x="57" y="38" width="18" height="24" rx="3"/><path d="M64 45h5v10h-5"/></svg></div><div class="product-info"><strong>Belts</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><path d="M32 25l18-8 18 8 15 12-11 14-8-8v38H36V43l-8 8-11-14z"/></svg></div><div class="product-info"><strong>Shirt</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><path d="M20 50c10-21 50-21 60 0-10 21-50 21-60 0z"/><path d="M30 42c11 8 29 8 40 0"/></svg></div><div class="product-info"><strong>Headbands</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle cx="50" cy="50" r="18"/></svg></div><div class="product-info"><strong>Bracelets</strong><span>Prototype photo slot</span></div></article>
+          <article class="product reveal"><div class="product-art"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="7"/><path d="M50 43c-22-18-30 16-7 12-17 17 14 30 12 7 18 22 31-10 8-12 22-18-10-31-13-7z"/></svg></div><div class="product-info"><strong>Fabric Flowers</strong><span>Prototype photo slot</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">04 • Impact we plan to create</div><h2>Ambitious enough to matter. Realistic enough to measure.</h2></div>
+          <p class="lead">The project does not claim impact that has not happened yet. These are the targets the concept will work toward as production, partnerships and sales grow.</p>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-main reveal"><div><div class="eyebrow" style="color:#dce6d4">Material target</div><div class="big">10,000</div><div style="font-size:1.2rem;font-weight:800;margin-top:10px">kilograms by end of 2027</div></div><p>Targeted diversion of usable material into creative reuse, product development and circular-fashion experimentation.</p></div>
+          <div class="impact-stack">
+            <div class="impact-card reveal"><strong>Fair work</strong><p>Create selected income and work opportunities for people affected by cancer as the venture grows.</p></div>
+            <div class="impact-card reveal"><strong>2 projects</strong><p>Target funding or supporting two practical community initiatives through future project growth.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">05 • Roadmap</div><h2>Start small. Prove demand. Scale what works.</h2></div>
+          <p class="lead">The model is designed to grow in stages rather than making unrealistic promises before the market and production process have been tested.</p>
+        </div>
+        <div class="roadmap">
+          <div class="mile reveal"><div class="year">NOW</div><h3>Prototype</h3><p>Complete first products, capture real photography and validate the visual identity.</p></div>
+          <div class="mile reveal"><div class="year">NEXT</div><h3>Test market</h3><p>Small-batch sales, pop-up exposure, feedback and early partner conversations.</p></div>
+          <div class="mile reveal"><div class="year">2027</div><h3>Build traction</h3><p>Expand sourcing, product range and measurable material diversion.</p></div>
+          <div class="mile reveal"><div class="year">THEN</div><h3>Scale impact</h3><p>Grow fair-work opportunities and contribute to two community projects.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partner">
+      <div class="wrap">
+        <div class="ask reveal">
+          <div><div class="eyebrow">06 • The invitation</div><h2>Help turn the first collection into a scalable Namibian story.</h2><p class="lead" style="color:#34372f;margin-top:24px">We are looking for the right conversations around material sourcing, production support, retail exposure, mentorship and future investment.</p></div>
+          <div class="ask-list">
+            <div class="ask-item">Material & sourcing partners</div>
+            <div class="ask-item">Production & skills partners</div>
+            <div class="ask-item">Retail, showcase & runway opportunities</div>
+            <div class="ask-item">Mentors and future investors</div>
+            <button class="btn primary" style="margin-top:10px;justify-content:center" onclick="showContact()">Start a conversation →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div><div class="footer-title">Waste, reimagined.</div><div class="small">Namibia • Sustainable fashion pitch concept • 2026</div></div>
+      <div class="small">Real product photography will be added as prototypes are completed.</div>
+    </div>
+  </footer>
+
+  <div class="pitchbar"><span id="pitchStatus">Pitch mode • 01 / 06</span><button onclick="nextPitch()">Next section →</button></div>
+
+  <script>
+    const pitchSections=['idea','collection','impact','roadmap','partner'];
+    let pitchIndex=-1;
+    function nextPitch(){
+      pitchIndex=(pitchIndex+1)%pitchSections.length;
+      document.getElementById(pitchSections[pitchIndex]).scrollIntoView({behavior:'smooth'});
+      document.getElementById('pitchStatus').textContent=`Pitch mode • ${String(pitchIndex+2).padStart(2,'0')} / 06`;
+    }
+    function showContact(){
+      const msg='Investor and partner contact details can be added here once confirmed. For the presentation, use this moment to invite questions and partnership discussion.';
+      alert(msg);
+    }
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
