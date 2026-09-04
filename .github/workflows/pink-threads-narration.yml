@@ -1,0 +1,42 @@
+name: Pink Threads narration production
+on:
+  push:
+    branches: [video/pink-threads-female-audio-20260904]
+    paths:
+      - video-production/**
+      - .github/workflows/pink-threads-narration.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  narration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install neural speech dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y espeak-ng libsndfile1 ffmpeg
+          python -m pip install --quiet 'torch==2.6.0' --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --quiet 'kokoro==0.9.4' soundfile 'numpy<3'
+          python -m spacy download en_core_web_sm
+      - name: Synthesize female voice
+        run: python video-production/make_voice.py
+      - name: Inspect actual waveform levels
+        run: |
+          ffmpeg -hide_banner -i narration-output/00_opening.wav -af volumedetect -f null - 2> narration-output/level-check.txt
+          cat narration-output/level-check.txt
+      - name: Save audio production files
+        uses: actions/upload-artifact@v4
+        with:
+          name: pink-threads-female-narration
+          path: narration-output/
+          retention-days: 7
